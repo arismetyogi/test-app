@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
+// from Job on model folder 
+use App\Models\Job;
+
 // passing values from routes as an arrayy
 Route::get('/', function () {
     return view('home', [
@@ -12,49 +15,17 @@ Route::get('/', function () {
 
 Route::get('/experience', function () {
     return view('experience',[
-        'jobs' => [
-            [
-                'id' => 1,
-                'title' => 'Data Analyst',
-                'place' => 'KFA',
-            ],
-            [
-                'id'=> 2,
-                'title'=> 'Data Scientist',
-                'place'=>'KFA'
-            ],
-            [
-                'id'=> 3,
-                'title'=> 'Web Developer',
-                'place' => 'anywhere'
-            ]
-        ]
+        'jobs' => Job::all()
     ]);
 });
 
 Route::get('/exp/{id}', function ($id) {
-    $jobs = [
-        [
-            'id' => 1,
-            'title' => 'Data Analyst',
-            'place' => 'KFA',
-        ],
-        [
-            'id' => 2,
-            'title' => 'Data Scientist',
-            'place' => 'KFA'
-        ],
-        [
-            'id' => 3,
-            'title' => 'Web Developer',
-            'place' => 'anywhere'
-        ]
-    ];
-
+    
     // Arr::first($jobs, function ($job) use ($id) {
         //     return $job['id'] == $id;
         // });
-    $job = Arr::first($jobs, fn($job) => $job['id'] == $id);
+    // setelah dunction find by id dipindh ke job.php
+    $job =Job::find($id);
 
     return view('exp', ['job' => $job]);
 });
