@@ -7,6 +7,6 @@
     </x-slot:heading>   
     
     @foreach ($jobs as $job)
-        <li><a href="/exp/{{ $job['id'] }}">{{ $job['title'] }} on {{ $job['place'] }}</a></li>
+        <li><a href="/exp/{{ $job['id'] }}">{{ $job['title'] }} on {{ $job['workplace'] }}</a></li>
     @endforeach
 </x-layout>

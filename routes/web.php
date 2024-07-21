@@ -1,12 +1,15 @@
 <?php
 
+use App\Models\JobHisttory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
-// from Job on model folder 
-use App\Models\Job;
+// from JobHistory on model folder 
+use App\Models\JobHistory;
 
 // passing values from routes as an arrayy
 Route::get('/', function () {
+    // $jobs = JobHistory::all();
+    // dd($jobs[0]->title);
     return view('home', [
         'greeting' => 'Hello',
         'name' => 'Yogi Arismet'
@@ -15,7 +18,7 @@ Route::get('/', function () {
 
 Route::get('/experience', function () {
     return view('experience',[
-        'jobs' => Job::all()
+        'jobs' => JobHistory::all()
     ]);
 });
 
@@ -25,7 +28,7 @@ Route::get('/exp/{id}', function ($id) {
         //     return $job['id'] == $id;
         // });
     // setelah dunction find by id dipindh ke job.php
-    $job =Job::find($id);
+    $job =JobHistory::find($id);
 
     return view('exp', ['job' => $job]);
 });
